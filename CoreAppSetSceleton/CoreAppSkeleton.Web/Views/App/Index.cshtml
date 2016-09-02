@@ -1,0 +1,21 @@
+﻿@model IEnumerable<CoreAppSkeleton.Data.ViewModels.CoreAppViewModel>
+
+@foreach (var coreappmodel in Model)
+{
+    <div class="jumbotron">
+        <h1>
+            @coreappmodel.Title
+        </h1>
+        <p>@coreappmodel.Description</p>
+    </div>
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            bootbox.confirm("Are you sure?", function (result) {
+                console.log("Confirm result: " + result);
+            });
+        });
+    </script>
+}

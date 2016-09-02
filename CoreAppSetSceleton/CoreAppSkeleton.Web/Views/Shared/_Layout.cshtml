@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" asp-href-include="~/css/*.css" />
+    </environment>
+
+    <environment names="Staging, Production">
+        <link rel="stylesheet" href="~/css/min/site.min.css" />
+    </environment>
+
+</head>
+<body>
+    <environment names="Development">
+        <script src="~/js/jquery.js"></script>
+        <script asp-src-include="~/js/*.js"></script>
+    </environment>
+
+    <environment names="Staging, Production">
+        <script src="~/js/min/site.min.js"></script>
+    </environment>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    @RenderSection("scripts")
+</body>
+</html>

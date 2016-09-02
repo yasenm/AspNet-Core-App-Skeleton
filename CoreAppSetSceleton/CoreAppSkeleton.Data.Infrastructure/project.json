@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "NETStandard.Library": "1.6.0",
+    "CoreAppSkeleton.Data.ViewModels": "1.0.0-*",
+    "CoreAppSkeleton.Data.Models": "1.0.0-*",
+    "AutoMapper": "5.1.1"
+  },
+
+  "frameworks": {
+    "net461": {},
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}

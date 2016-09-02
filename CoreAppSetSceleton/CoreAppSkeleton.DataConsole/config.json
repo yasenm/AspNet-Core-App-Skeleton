@@ -1,0 +1,5 @@
+﻿{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\v11.0;Database=CoreAppSkeletonDb;Trusted_Connection=true;MultipleActiveResultSets=true;"
+  }
+}
