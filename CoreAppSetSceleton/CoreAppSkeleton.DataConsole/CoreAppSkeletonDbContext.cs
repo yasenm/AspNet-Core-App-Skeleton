@@ -2,10 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace CoreAppSkeleton.DataConsole
 {
-    public class CoreAppSkeletonDbContext : DbContext, ICoreAppSkeletonDbContext
+    public class CoreAppSkeletonDbContext : IdentityDbContext<User>, ICoreAppSkeletonDbContext
     {
         private IConfigurationRoot _config;
 

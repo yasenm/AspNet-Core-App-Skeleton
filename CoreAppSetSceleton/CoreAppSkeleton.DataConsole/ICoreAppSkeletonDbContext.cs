@@ -5,6 +5,7 @@ namespace CoreAppSkeleton.DataConsole
 {
     public interface ICoreAppSkeletonDbContext
     {
+        DbSet<User> Users { get; set; }
         DbSet<CoreAppModel> CoreAppModels { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 {
   "version": "1.0.0-*",
+
   "buildOptions": {
     "emitEntryPoint": true
   },
@@ -12,16 +13,7 @@
     "Microsoft.EntityFrameworkCore.Tools": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    },
-    "Microsoft.Extensions.Configuration": "1.0.0",
-    "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0",
-    "Microsoft.Extensions.Configuration.Json": "1.0.0",
-    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0",
-    "CoreAppSkeleton.Data.Common": "1.0.0-*",
-    "CoreAppSkeleton.Data.ViewModels": "1.0.0-*",
-    "AutoMapper": "5.1.1",
-    "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
-    "Microsoft.AspNetCore.Identity": "1.0.0"
+    }
   },
 
   "tools": {
@@ -34,16 +26,12 @@
   },
 
   "frameworks": {
-    "net461": {
-      "dependencies": {
-        "Microsoft.AspNet.Identity.Core": "2.2.1"
-      }
-    },
+    "net461": {},
     "netcoreapp1.0": {
       "dependencies": {
         "Microsoft.NETCore.App": {
           "type": "platform",
-          "version": "1.0.0"
+          "version": "1.0.0-*"
         }
       },
       "imports": "dnxcore50"

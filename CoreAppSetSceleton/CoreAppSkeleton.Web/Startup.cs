@@ -13,6 +13,10 @@ using CoreAppSkeleton.DataConsole;
 using CoreAppSkeleton.Data.Infrastructure.Mapping;
 using CoreAppSkeleton.DataConsole.Repository.Contracts;
 using CoreAppSkeleton.DataConsole.Repository;
+using CoreAppSkeleton.Data.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CoreAppSkeleton.Web
 {
@@ -32,7 +36,7 @@ namespace CoreAppSkeleton.Web
 
             _config = builder.Build();
 
-            AutoMapper.Mapper.Initialize(config => config.AddProfile(new AutoMapperConfig()));
+            Mapper.Initialize(config => config.AddProfile(new AutoMapperConfig()));
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -44,14 +48,31 @@ namespace CoreAppSkeleton.Web
             services.AddScoped<ICoreAppSkeletonDbContext, CoreAppSkeletonDbContext>();
             services.AddScoped<ICoreModelRepository, CoreModelRepository>();
 
-            services.AddMvc().AddJsonOptions(config =>
+            services.AddTransient<CoreAppSkeletonSeedData>();
+
+            services.AddDbContext<CoreAppSkeletonDbContext>();
+
+            services.AddIdentity<User, IdentityRole>(config =>
+            {
+                config.User.RequireUniqueEmail = true;
+                config.Cookies.ApplicationCookie.LoginPath = "/auth/login";
+            })
+            .AddEntityFrameworkStores<CoreAppSkeletonDbContext>();
+
+            services.AddMvc(config => {
+                if (_env.IsProduction())
+                {
+                    config.Filters.Add(new RequireHttpsAttribute());
+                }    
+            })
+            .AddJsonOptions(config =>
             {
                 config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory logger)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory logger, CoreAppSkeletonSeedData seeder)
         {
             if (env.IsDevelopment())
             {
@@ -63,6 +84,10 @@ namespace CoreAppSkeleton.Web
                 logger.AddDebug(LogLevel.Error);
             }
 
+            app.UseIdentity();
+
+            app.UseStaticFiles();
+
             app.UseMvc(config =>
             {
                 config.MapRoute(
@@ -70,8 +95,8 @@ namespace CoreAppSkeleton.Web
                     template: "{controller}/{action}/{id?}",
                     defaults: new { controller = "App", action = "Index" });
             });
-            
-            app.UseStaticFiles();
+
+            seeder.SeedData().Wait();
         }
     }
 }

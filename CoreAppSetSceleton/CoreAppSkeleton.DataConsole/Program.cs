@@ -6,6 +6,7 @@ namespace CoreAppSkeleton.DataConsole
     public class Program
     {
         private static IConfigurationRoot _config;
+        private static ICoreAppSkeletonDbContext _context;
 
         public static void Main()
         {
@@ -16,6 +17,8 @@ namespace CoreAppSkeleton.DataConsole
             _config = builder.Build();
 
             System.Console.WriteLine(_config["ConnectionStrings:DefaultConnection"]);
+
+            _context = new CoreAppSkeletonDbContext();
         }
     }
 }

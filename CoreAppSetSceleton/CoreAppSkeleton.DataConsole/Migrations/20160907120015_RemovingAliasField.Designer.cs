@@ -8,9 +8,10 @@ using CoreAppSkeleton.DataConsole;
 namespace CoreAppSkeleton.DataConsole.Migrations
 {
     [DbContext(typeof(CoreAppSkeletonDbContext))]
-    partial class CoreAppSkeletonDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160907120015_RemovingAliasField")]
+    partial class RemovingAliasField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")

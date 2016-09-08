@@ -1,0 +1,8 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <div class="jumbotron">
+        <h1>
+            @User.Identity.Name
+        </h1>
+    </div>
+}

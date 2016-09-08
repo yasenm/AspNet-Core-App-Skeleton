@@ -1,8 +1,9 @@
 ﻿using CoreAppSkeleton.DataConsole;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using CoreAppSkeleton.Data.ViewModels;
-using AutoMapper.QueryableExtensions;
+
+using Microsoft.AspNetCore.Authorization;
+
 using CoreAppSkeleton.DataConsole.Repository.Contracts;
 
 namespace CoreAppSkeleton.Web.Controllers
@@ -21,6 +22,12 @@ namespace CoreAppSkeleton.Web.Controllers
             var model = _coreModelRepo.GetAll().ToList();
 
             return View(model);
+        }
+
+        [Authorize]
+        public IActionResult Profile()
+        {
+            return View();
         }
     }
 }

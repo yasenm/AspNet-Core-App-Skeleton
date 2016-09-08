@@ -19,7 +19,9 @@
     "CoreAppSkeleton.Data.ViewModels": "1.0.0-*",
     "CoreAppSkeleton.Data.Infrastructure": "1.0.0-*",
     "AutoMapper": "5.1.1",
-    "Microsoft.AspNetCore.StaticFiles": "1.0.0"
+    "Microsoft.AspNetCore.StaticFiles": "1.0.0",
+    "CoreAppSkeleton.Data.Models": "1.0.0-*",
+    "Microsoft.AspNetCore.Identity": "1.0.0"
   },
 
   "tools": {
