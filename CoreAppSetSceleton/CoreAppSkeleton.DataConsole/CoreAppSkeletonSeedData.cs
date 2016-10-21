@@ -1,15 +1,16 @@
 ﻿using CoreAppSkeleton.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace CoreAppSkeleton.DataConsole
 {
     public class CoreAppSkeletonSeedData
     {
-        private ICoreAppSkeletonDbContext _context;
+        private CoreAppSkeletonDbContext _context;
         private UserManager<User> _userManager;
 
-        public CoreAppSkeletonSeedData(ICoreAppSkeletonDbContext context, UserManager<User> userManager)
+        public CoreAppSkeletonSeedData(CoreAppSkeletonDbContext context, UserManager<User> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -27,6 +28,14 @@ namespace CoreAppSkeleton.DataConsole
                 };
 
                 await _userManager.CreateAsync(user, "P@ssw0rd");
+            }
+        }
+
+        private void SeedCoreAppModels()
+        {
+            if (!this._context.CoreAppModels.Any())
+            {
+
             }
         }
     }

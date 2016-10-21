@@ -35,17 +35,18 @@ namespace CoreAppSkeleton.Web
                 .AddEnvironmentVariables();
 
             _config = builder.Build();
-
-            Mapper.Initialize(config => config.AddProfile(new AutoMapperConfig()));
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //Automapper configuration initialization
+            Mapper.Initialize(config => config.AddProfile(new AutoMapperConfig()));
+
             services.AddSingleton(_config);
 
-            services.AddScoped<ICoreAppSkeletonDbContext, CoreAppSkeletonDbContext>();
+            // Custom services registretion
             services.AddScoped<ICoreModelRepository, CoreModelRepository>();
 
             services.AddTransient<CoreAppSkeletonSeedData>();
@@ -65,8 +66,7 @@ namespace CoreAppSkeleton.Web
                     config.Filters.Add(new RequireHttpsAttribute());
                 }    
             })
-            .AddJsonOptions(config =>
-            {
+            .AddJsonOptions(config => {
                 config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
         }

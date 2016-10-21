@@ -6,7 +6,7 @@ namespace CoreAppSkeleton.DataConsole
     public class Program
     {
         private static IConfigurationRoot _config;
-        private static ICoreAppSkeletonDbContext _context;
+        private static CoreAppSkeletonDbContext _context;
 
         public static void Main()
         {

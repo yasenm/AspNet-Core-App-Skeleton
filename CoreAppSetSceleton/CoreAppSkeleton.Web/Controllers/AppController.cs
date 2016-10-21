@@ -1,10 +1,9 @@
-﻿using CoreAppSkeleton.DataConsole;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
+﻿using CoreAppSkeleton.DataConsole.Repository.Contracts;
 
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
-using CoreAppSkeleton.DataConsole.Repository.Contracts;
+using System.Linq;
 
 namespace CoreAppSkeleton.Web.Controllers
 {

@@ -13,10 +13,10 @@ namespace CoreAppSkeleton.Web.Controllers
 {
     public class AuthController : Controller
     {
-        private ICoreAppSkeletonDbContext _context;
+        private CoreAppSkeletonDbContext _context;
         private SignInManager<User> _signInManager;
 
-        public AuthController(ICoreAppSkeletonDbContext context, SignInManager<User> signInManager)
+        public AuthController(CoreAppSkeletonDbContext context, SignInManager<User> signInManager)
         {
             _context = context;
             _signInManager = signInManager;

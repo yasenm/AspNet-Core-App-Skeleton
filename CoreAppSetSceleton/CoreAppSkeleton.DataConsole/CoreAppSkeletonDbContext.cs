@@ -10,6 +10,7 @@ namespace CoreAppSkeleton.DataConsole
     {
         private IConfigurationRoot _config;
 
+        
         public CoreAppSkeletonDbContext()
             : base()
         {
