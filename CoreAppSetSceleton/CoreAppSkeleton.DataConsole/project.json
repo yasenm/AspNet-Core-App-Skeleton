@@ -21,7 +21,8 @@
     "CoreAppSkeleton.Data.ViewModels": "1.0.0-*",
     "AutoMapper": "5.1.1",
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
-    "Microsoft.AspNetCore.Identity": "1.0.0"
+    "Microsoft.AspNetCore.Identity": "1.0.0",
+    "CoreAppSkeleton.Common": "1.0.0-*"
   },
 
   "tools": {

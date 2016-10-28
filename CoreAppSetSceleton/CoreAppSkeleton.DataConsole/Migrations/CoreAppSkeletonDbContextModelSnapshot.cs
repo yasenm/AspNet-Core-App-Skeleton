@@ -21,9 +21,7 @@ namespace CoreAppSkeleton.DataConsole.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<long>("AuthorId");
-
-                    b.Property<string>("AuthorId1");
+                    b.Property<string>("AuthorId");
 
                     b.Property<DateTime>("CreatedOn");
 
@@ -41,7 +39,7 @@ namespace CoreAppSkeleton.DataConsole.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId1");
+                    b.HasIndex("AuthorId");
 
                     b.ToTable("BlogItems");
                 });
@@ -219,8 +217,8 @@ namespace CoreAppSkeleton.DataConsole.Migrations
             modelBuilder.Entity("CoreAppSkeleton.Data.Models.BlogItem", b =>
                 {
                     b.HasOne("CoreAppSkeleton.Data.Models.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId1");
+                        .WithMany("Blogs")
+                        .HasForeignKey("AuthorId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

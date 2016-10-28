@@ -15,8 +15,7 @@ namespace CoreAppSkeleton.DataConsole.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AuthorId = table.Column<long>(nullable: false),
-                    AuthorId1 = table.Column<string>(nullable: true),
+                    AuthorId = table.Column<string>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Description = table.Column<string>(nullable: true),
@@ -29,17 +28,17 @@ namespace CoreAppSkeleton.DataConsole.Migrations
                 {
                     table.PrimaryKey("PK_BlogItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BlogItems_AspNetUsers_AuthorId1",
-                        column: x => x.AuthorId1,
+                        name: "FK_BlogItems_AspNetUsers_AuthorId",
+                        column: x => x.AuthorId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_BlogItems_AuthorId1",
+                name: "IX_BlogItems_AuthorId",
                 table: "BlogItems",
-                column: "AuthorId1");
+                column: "AuthorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

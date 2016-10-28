@@ -21,6 +21,10 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreAppSkeleton.Data.ViewMo
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreAppSkeleton.Data.Services", "CoreAppSkeleton.Data.Services\CoreAppSkeleton.Data.Services.xproj", "{65E08E31-D545-40B5-A8E6-8FFC97DE8181}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{CBEE2D95-0165-48A2-BBFD-74808FC4A152}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreAppSkeleton.Common", "CoreAppSkeleton.Common\CoreAppSkeleton.Common.xproj", "{ADEB8373-E87C-415F-B859-5CB64D28CDE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +59,10 @@ Global
 		{65E08E31-D545-40B5-A8E6-8FFC97DE8181}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65E08E31-D545-40B5-A8E6-8FFC97DE8181}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65E08E31-D545-40B5-A8E6-8FFC97DE8181}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADEB8373-E87C-415F-B859-5CB64D28CDE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADEB8373-E87C-415F-B859-5CB64D28CDE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADEB8373-E87C-415F-B859-5CB64D28CDE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADEB8373-E87C-415F-B859-5CB64D28CDE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,5 +75,6 @@ Global
 		{F99B33ED-2CAD-4ED9-A12A-45DC03C01BB5} = {C0E9AC12-9DFF-4D19-BE56-6AB322D37433}
 		{47CE49D5-851B-4B6A-BBBE-F9F93C4B490E} = {C0E9AC12-9DFF-4D19-BE56-6AB322D37433}
 		{65E08E31-D545-40B5-A8E6-8FFC97DE8181} = {C0E9AC12-9DFF-4D19-BE56-6AB322D37433}
+		{ADEB8373-E87C-415F-B859-5CB64D28CDE9} = {CBEE2D95-0165-48A2-BBFD-74808FC4A152}
 	EndGlobalSection
 EndGlobal

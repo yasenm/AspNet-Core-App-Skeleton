@@ -12,7 +12,7 @@ namespace CoreAppSkeleton.Data.Models
             Blogs = new HashSet<BlogItem>();
         }
 
-        private ICollection<BlogItem> Blogs
+        public virtual ICollection<BlogItem> Blogs
         {
             get { return _blogs; }
             set { _blogs = value; }

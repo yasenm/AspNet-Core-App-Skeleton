@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CoreAppSkeleton.Data")]
+[assembly: AssemblyProduct("CoreAppSkeleton.Common")]
 [assembly: AssemblyTrademark("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -16,4 +16,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("609a967b-b600-4294-9126-8817e8d1de2d")]
+[assembly: Guid("adeb8373-e87c-415f-b859-5cb64d28cde9")]

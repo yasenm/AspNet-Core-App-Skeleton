@@ -2,7 +2,6 @@
 
 using CoreAppSkeleton.Data.Models;
 using CoreAppSkeleton.Data.ViewModels;
-using CoreAppSkeleton.Data.ViewModels.BlogItems;
 
 namespace CoreAppSkeleton.Data.Infrastructure.Mapping
 {

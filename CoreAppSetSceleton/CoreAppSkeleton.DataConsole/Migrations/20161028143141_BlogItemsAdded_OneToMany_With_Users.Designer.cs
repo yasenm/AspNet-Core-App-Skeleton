@@ -8,7 +8,7 @@ using CoreAppSkeleton.DataConsole;
 namespace CoreAppSkeleton.DataConsole.Migrations
 {
     [DbContext(typeof(CoreAppSkeletonDbContext))]
-    [Migration("20161028131028_BlogItemsAdded_OneToMany_With_Users")]
+    [Migration("20161028143141_BlogItemsAdded_OneToMany_With_Users")]
     partial class BlogItemsAdded_OneToMany_With_Users
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,9 +22,7 @@ namespace CoreAppSkeleton.DataConsole.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<long>("AuthorId");
-
-                    b.Property<string>("AuthorId1");
+                    b.Property<string>("AuthorId");
 
                     b.Property<DateTime>("CreatedOn");
 
@@ -42,7 +40,7 @@ namespace CoreAppSkeleton.DataConsole.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId1");
+                    b.HasIndex("AuthorId");
 
                     b.ToTable("BlogItems");
                 });
@@ -220,8 +218,8 @@ namespace CoreAppSkeleton.DataConsole.Migrations
             modelBuilder.Entity("CoreAppSkeleton.Data.Models.BlogItem", b =>
                 {
                     b.HasOne("CoreAppSkeleton.Data.Models.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId1");
+                        .WithMany("Blogs")
+                        .HasForeignKey("AuthorId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
