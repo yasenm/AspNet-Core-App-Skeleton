@@ -8,9 +8,10 @@ using CoreAppSkeleton.DataConsole;
 namespace CoreAppSkeleton.DataConsole.Migrations
 {
     [DbContext(typeof(CoreAppSkeletonDbContext))]
-    partial class CoreAppSkeletonDbContextModelSnapshot : ModelSnapshot
+    [Migration("20161028131028_BlogItemsAdded_OneToMany_With_Users")]
+    partial class BlogItemsAdded_OneToMany_With_Users
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")

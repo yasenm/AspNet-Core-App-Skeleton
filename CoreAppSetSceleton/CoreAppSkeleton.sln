@@ -19,6 +19,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreAppSkeleton.DataConsole
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreAppSkeleton.Data.ViewModels", "CoreAppSkeleton.Data.ViewModels\CoreAppSkeleton.Data.ViewModels.xproj", "{47CE49D5-851B-4B6A-BBBE-F9F93C4B490E}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreAppSkeleton.Data.Services", "CoreAppSkeleton.Data.Services\CoreAppSkeleton.Data.Services.xproj", "{65E08E31-D545-40B5-A8E6-8FFC97DE8181}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{47CE49D5-851B-4B6A-BBBE-F9F93C4B490E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47CE49D5-851B-4B6A-BBBE-F9F93C4B490E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47CE49D5-851B-4B6A-BBBE-F9F93C4B490E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65E08E31-D545-40B5-A8E6-8FFC97DE8181}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65E08E31-D545-40B5-A8E6-8FFC97DE8181}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65E08E31-D545-40B5-A8E6-8FFC97DE8181}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65E08E31-D545-40B5-A8E6-8FFC97DE8181}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,5 +66,6 @@ Global
 		{5EEC6B11-843F-4544-94D1-4B434859F7C3} = {C0E9AC12-9DFF-4D19-BE56-6AB322D37433}
 		{F99B33ED-2CAD-4ED9-A12A-45DC03C01BB5} = {C0E9AC12-9DFF-4D19-BE56-6AB322D37433}
 		{47CE49D5-851B-4B6A-BBBE-F9F93C4B490E} = {C0E9AC12-9DFF-4D19-BE56-6AB322D37433}
+		{65E08E31-D545-40B5-A8E6-8FFC97DE8181} = {C0E9AC12-9DFF-4D19-BE56-6AB322D37433}
 	EndGlobalSection
 EndGlobal

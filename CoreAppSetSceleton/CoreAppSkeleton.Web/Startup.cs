@@ -17,6 +17,8 @@ using CoreAppSkeleton.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using CoreAppSkeleton.Data.Services.Lib;
+using CoreAppSkeleton.Data.Services.Contracts;
 
 namespace CoreAppSkeleton.Web
 {
@@ -42,12 +44,13 @@ namespace CoreAppSkeleton.Web
         public void ConfigureServices(IServiceCollection services)
         {
             //Automapper configuration initialization
-            Mapper.Initialize(config => config.AddProfile(new AutoMapperConfig()));
+            AutoMapperConfig.Init();
 
             services.AddSingleton(_config);
 
             // Custom services registretion
             services.AddScoped<ICoreModelRepository, CoreModelRepository>();
+            services.AddScoped<IBlogItemsService, BlogItemsService>();
 
             services.AddTransient<CoreAppSkeletonSeedData>();
 
@@ -60,13 +63,15 @@ namespace CoreAppSkeleton.Web
             })
             .AddEntityFrameworkStores<CoreAppSkeletonDbContext>();
 
-            services.AddMvc(config => {
+            services.AddMvc(config =>
+            {
                 if (_env.IsProduction())
                 {
                     config.Filters.Add(new RequireHttpsAttribute());
-                }    
+                }
             })
-            .AddJsonOptions(config => {
+            .AddJsonOptions(config =>
+            {
                 config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
         }
@@ -83,6 +88,14 @@ namespace CoreAppSkeleton.Web
             {
                 logger.AddDebug(LogLevel.Error);
             }
+
+            app.Use(async (context, next) =>
+            {
+                // logic can go here
+                await next.Invoke();
+                logger.AddDebug(LogLevel.Error);
+                // and logic can go here as well
+            });
 
             app.UseIdentity();
 

@@ -2,14 +2,24 @@
 
 using CoreAppSkeleton.Data.Models;
 using CoreAppSkeleton.Data.ViewModels;
+using CoreAppSkeleton.Data.ViewModels.BlogItems;
 
 namespace CoreAppSkeleton.Data.Infrastructure.Mapping
 {
-    public class AutoMapperConfig : Profile
+    public static class AutoMapperConfig
     {
-        public AutoMapperConfig()
+        public static void Init()
         {
-            CreateMap<CoreAppModel, CoreAppViewModel>().ReverseMap();
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<CoreAppModel, CoreAppViewModel>()
+                // Custom field mapping tested and working !! :)
+                    .ForMember(dest => dest.Description123, opt => opt.MapFrom(src => src.Description))
+                    .ReverseMap();
+
+                cfg.CreateMap<BlogItem, BlogItemLingBigViewModel>()
+                    .ReverseMap();
+            });
         }
     }
 }

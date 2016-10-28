@@ -1,15 +1,14 @@
 ﻿using CoreAppSkeleton.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System.IO;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.IO;
 
 namespace CoreAppSkeleton.DataConsole
 {
     public class CoreAppSkeletonDbContext : IdentityDbContext<User>, ICoreAppSkeletonDbContext
     {
         private IConfigurationRoot _config;
-
         
         public CoreAppSkeletonDbContext()
             : base()
@@ -29,6 +28,8 @@ namespace CoreAppSkeleton.DataConsole
         }
 
         public DbSet<CoreAppModel> CoreAppModels { get; set; }
+
+        public DbSet<BlogItem> BlogItems { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

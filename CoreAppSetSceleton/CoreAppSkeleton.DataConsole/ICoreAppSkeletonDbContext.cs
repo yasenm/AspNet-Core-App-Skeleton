@@ -7,5 +7,6 @@ namespace CoreAppSkeleton.DataConsole
     {
         DbSet<User> Users { get; set; }
         DbSet<CoreAppModel> CoreAppModels { get; set; }
+        DbSet<BlogItem> BlogItems { get; set; }
     }
 }

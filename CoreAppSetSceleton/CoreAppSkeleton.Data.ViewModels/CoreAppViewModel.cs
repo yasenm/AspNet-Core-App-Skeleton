@@ -14,14 +14,14 @@ namespace CoreAppSkeleton.Data.ViewModels
                 return a => new CoreAppViewModel
                 {
                     Title = a.Title,
-                    Description = a.Description
+                    Description123 = a.Description
                 };
             }
         }
+        
+        public string Title { get; set; }
 
         [Required]
-        public string Title { get; set; }
-        [Required]
-        public string Description { get; set; }
+        public string Description123 { get; set; }
     }
 }
