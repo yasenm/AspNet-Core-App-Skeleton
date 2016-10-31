@@ -1,24 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CoreAppSkeleton.Data.Infrastructure.Mapping;
+using CoreAppSkeleton.Data.Models;
+using CoreAppSkeleton.Data.Services.Contracts;
+using CoreAppSkeleton.Data.Services.Lib;
+using CoreAppSkeleton.DataConsole;
+using CoreAppSkeleton.DataConsole.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Serialization;
-using CoreAppSkeleton.DataConsole;
-using CoreAppSkeleton.Data.Infrastructure.Mapping;
-using CoreAppSkeleton.DataConsole.Repository.Contracts;
-using CoreAppSkeleton.DataConsole.Repository;
-using CoreAppSkeleton.Data.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using CoreAppSkeleton.Data.Services.Lib;
-using CoreAppSkeleton.Data.Services.Contracts;
 
 namespace CoreAppSkeleton.Web
 {
@@ -49,7 +42,8 @@ namespace CoreAppSkeleton.Web
             services.AddSingleton(_config);
 
             // Custom services registretion
-            services.AddScoped<ICoreModelRepository, CoreModelRepository>();
+            services.AddScoped<ICoreAppSkeletonData, CoreAppSkeletonData>();
+            services.AddScoped<ICoreAppModelService, CoreAppModelService>();
             services.AddScoped<IBlogItemsService, BlogItemsService>();
 
             services.AddTransient<CoreAppSkeletonSeedData>();

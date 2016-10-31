@@ -1,5 +1,5 @@
-﻿using CoreAppSkeleton.DataConsole.Repository.Contracts;
-
+﻿using CoreAppSkeleton.Data.Services.Contracts;
+using CoreAppSkeleton.Data.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,16 +9,16 @@ namespace CoreAppSkeleton.Web.Controllers
 {
     public class AppController : Controller
     {
-        private ICoreModelRepository _coreModelRepo;
+        private ICoreAppModelService _coreAppModelService;
 
-        public AppController(ICoreModelRepository coreModelRepo)
+        public AppController(ICoreAppModelService coreAppModelService)
         {
-            _coreModelRepo = coreModelRepo;
+            _coreAppModelService = coreAppModelService;
         }
 
         public IActionResult Index()
         {
-            var model = _coreModelRepo.GetAll().ToList();
+            var model = _coreAppModelService.GetAll<CoreAppViewModel>().ToList();
 
             return View(model);
         }

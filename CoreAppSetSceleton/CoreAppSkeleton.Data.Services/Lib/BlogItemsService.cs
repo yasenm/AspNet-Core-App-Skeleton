@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using CoreAppSkeleton.Data.Services.Contracts;
 using CoreAppSkeleton.DataConsole;
+using CoreAppSkeleton.DataConsole.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,16 +12,16 @@ namespace CoreAppSkeleton.Data.Services.Lib
 {
     public class BlogItemsService : IBlogItemsService
     {
-        private CoreAppSkeletonDbContext _context;
+        private ICoreAppSkeletonData _data;
 
-        public BlogItemsService(CoreAppSkeletonDbContext context)
+        public BlogItemsService(ICoreAppSkeletonData data)
         {
-            _context = context;
+            _data = data;
         }
 
         public IQueryable<TViewModel> GetAll<TViewModel>()
         {
-            var result = _context.BlogItems
+            var result = _data.BlogItems.All()
                 .ProjectTo<TViewModel>();
 
             return result;
@@ -28,7 +29,7 @@ namespace CoreAppSkeleton.Data.Services.Lib
 
         public TViewModel GetById<TViewModel>(int id)
         {
-            var model = _context.BlogItems.FirstOrDefault(bi => bi.Id == id);
+            var model = _data.BlogItems.All().FirstOrDefault(bi => bi.Id == id);
             if (model != null)
             {
                 var result = Mapper.Map<TViewModel>(model);
