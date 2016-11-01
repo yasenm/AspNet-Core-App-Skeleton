@@ -39,7 +39,7 @@ namespace CoreAppSkeleton.DataConsole
                 await _userManager.CreateAsync(user, "P@ssw0rd");
             }
         }
-        
+
         private async Task SeedGeneratedBlogModels()
         {
             if (!_context.Blogs.Any())
@@ -52,7 +52,7 @@ namespace CoreAppSkeleton.DataConsole
                     {
                         var newBlogItem = new Blog
                         {
-                            AuthorId = users[NumberGenerator.RandomNumber(0, users.Count)].Id,
+                            AuthorId = users[NumberGenerator.RandomNumber(0, users.Count - 1)].Id,
                             CreatedOn = DateTime.Now.AddDays(NumberGenerator.RandomNumber(1, 10)),
                             Summary = StringGenerator.RandomStringWithSpaces(40, 200),
                             Title = StringGenerator.RandomStringWithSpaces(10, 60),
@@ -80,8 +80,8 @@ namespace CoreAppSkeleton.DataConsole
                     {
                         var newPostItem = new Post
                         {
-                            BlogId = blogs[NumberGenerator.RandomNumber(0, blogs.Count)].Id,
-                            AuthorId = users[NumberGenerator.RandomNumber(0, users.Count)].Id,
+                            BlogId = blogs[NumberGenerator.RandomNumber(0, blogs.Count - 1)].Id,
+                            AuthorId = users[NumberGenerator.RandomNumber(0, users.Count - 1)].Id,
                             CreatedOn = DateTime.Now.AddDays(NumberGenerator.RandomNumber(1, 10)),
                             Summary = StringGenerator.RandomStringWithSpaces(40, 200),
                             Title = StringGenerator.RandomStringWithSpaces(10, 60),

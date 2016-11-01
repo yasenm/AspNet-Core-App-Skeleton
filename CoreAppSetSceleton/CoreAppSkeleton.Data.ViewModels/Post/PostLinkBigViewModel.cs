@@ -2,7 +2,7 @@
 
 namespace CoreAppSkeleton.Data.ViewModels
 {
-    public class BlogItemLingBigViewModel
+    public class PostLinkBigViewModel
     {
         public int Id { get; set; }
         public string Title { get; set; }

@@ -44,7 +44,7 @@ namespace CoreAppSkeleton.Web
             // Custom services registretion
             services.AddScoped<ICoreAppSkeletonData, CoreAppSkeletonData>();
             services.AddScoped<ICoreAppModelService, CoreAppModelService>();
-            services.AddScoped<IBlogItemsService, BlogItemsService>();
+            services.AddScoped<IPostService, PostService>();
 
             services.AddTransient<CoreAppSkeletonSeedData>();
 

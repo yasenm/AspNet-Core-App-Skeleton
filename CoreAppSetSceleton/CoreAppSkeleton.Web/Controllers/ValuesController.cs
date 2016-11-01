@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CoreAppSkeleton.Data.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using CoreAppSkeleton.DataConsole.Repository.Contracts;
-using CoreAppSkeleton.Data.ViewModels;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,10 +11,10 @@ namespace CoreAppSkeleton.Web.Controllers
     [Route("api/custom/values")]
     public class ValuesController : Controller
     {
-        private ICoreModelRepository _coreModelRepo;
+        private ICoreAppModelService _coreModelRepo;
         private ILogger<ValuesController> _logger;
 
-        public ValuesController(ICoreModelRepository coreModelRepo, ILogger<ValuesController> logger)
+        public ValuesController(ICoreAppModelService coreModelRepo, ILogger<ValuesController> logger)
         {
             _coreModelRepo = coreModelRepo;
             _logger = logger;
@@ -26,7 +23,7 @@ namespace CoreAppSkeleton.Web.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_coreModelRepo.GetAll());
+            return Ok(_coreModelRepo.GetAll<object>());
         }
 
         // GET api/values/5
@@ -42,8 +39,8 @@ namespace CoreAppSkeleton.Web.Controllers
         {
             try
             {
-                var results = _coreModelRepo.GetAll().FirstOrDefault(cavm => cavm.Title.Equals(title));
-                return Ok(results);
+                var result = _coreModelRepo.GetAll<object>().FirstOrDefault();
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -55,18 +52,18 @@ namespace CoreAppSkeleton.Web.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]CoreAppViewModel appModel)
-        {
-            if (ModelState.IsValid)
-            {
-                _coreModelRepo.Add(appModel);
-                if (await _coreModelRepo.SaveChangesAsync())
-                {
-                    return  Created($"api/custom/values/{appModel.Title}", appModel);
-                }
-            }
-            return BadRequest("Failed to save item");
-        }
+        //public async Task<IActionResult> Post([FromBody]CoreAppViewModel appModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _coreModelRepo.Add(appModel);
+        //        if (await _coreModelRepo.SaveChangesAsync())
+        //        {
+        //            return  Created($"api/custom/values/{appModel.Title}", appModel);
+        //        }
+        //    }
+        //    return BadRequest("Failed to save item");
+        //}
 
         // PUT api/values/5
         [HttpPut("{id}")]

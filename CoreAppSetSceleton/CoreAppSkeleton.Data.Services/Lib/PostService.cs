@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace CoreAppSkeleton.Data.Services.Lib
 {
-    public class BlogItemsService : IBlogItemsService
+    public class PostService : IPostService
     {
         private ICoreAppSkeletonData _data;
 
-        public BlogItemsService(ICoreAppSkeletonData data)
+        public PostService(ICoreAppSkeletonData data)
         {
             _data = data;
         }

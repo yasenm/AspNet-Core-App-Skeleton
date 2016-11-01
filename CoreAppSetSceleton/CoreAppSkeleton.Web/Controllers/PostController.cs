@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace CoreAppSkeleton.Web.Controllers
 {
-    public class BlogController : Controller
+    public class PostController : Controller
     {
-        private IBlogItemsService _blogItemsService;
+        private IPostService _blogItemsService;
 
-        public BlogController(IBlogItemsService blogItemsService)
+        public PostController(IPostService blogItemsService)
         {
             _blogItemsService = blogItemsService;
         }
@@ -18,7 +18,7 @@ namespace CoreAppSkeleton.Web.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            var result = _blogItemsService.GetAll<BlogItemLingBigViewModel>().ToList();
+            var result = _blogItemsService.GetAll<PostLinkBigViewModel>().ToList();
 
             return View(result);
         }
