@@ -44,7 +44,12 @@ namespace CoreAppSkeleton.DataConsole.UnitOfWork
             }
         }
 
-        public async Task<int> SaveChanges()
+        public int SaveChanges()
+        {
+            return Context.SaveChanges();
+        }
+
+        public async Task<int> SaveChangesAsync()
         {
             return await this.Context.SaveChangesAsync();
         }

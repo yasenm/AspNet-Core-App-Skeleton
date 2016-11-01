@@ -1,8 +1,10 @@
 ﻿using CoreAppSkeleton.Data.Services.Contracts;
+using CoreAppSkeleton.Data.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -52,18 +54,15 @@ namespace CoreAppSkeleton.Web.Controllers
 
         // POST api/values
         [HttpPost]
-        //public async Task<IActionResult> Post([FromBody]CoreAppViewModel appModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _coreModelRepo.Add(appModel);
-        //        if (await _coreModelRepo.SaveChangesAsync())
-        //        {
-        //            return  Created($"api/custom/values/{appModel.Title}", appModel);
-        //        }
-        //    }
-        //    return BadRequest("Failed to save item");
-        //}
+        public async Task<IActionResult> Post([FromBody]CoreAppViewModel appModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var success = await _coreModelRepo.Add(appModel);
+                return Created($"api/custom/values/{appModel.Title}", appModel);
+            }
+            return BadRequest("Failed to save item");
+        }
 
         // PUT api/values/5
         [HttpPut("{id}")]

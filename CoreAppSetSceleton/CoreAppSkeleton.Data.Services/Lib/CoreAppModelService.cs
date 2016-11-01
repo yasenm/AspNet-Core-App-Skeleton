@@ -1,4 +1,6 @@
-﻿using AutoMapper.QueryableExtensions;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using CoreAppSkeleton.Data.Models;
 using CoreAppSkeleton.Data.Services.Contracts;
 using CoreAppSkeleton.DataConsole.UnitOfWork;
 using System;
@@ -15,6 +17,13 @@ namespace CoreAppSkeleton.Data.Services.Lib
         public CoreAppModelService(ICoreAppSkeletonData data)
         {
             _data = data;
+        }
+
+        public async Task<bool> Add<T>(T viewModel)
+        {
+            var model = Mapper.Map<CoreAppModel>(viewModel);
+            _data.CoreAppModels.Add(model);
+            return (await _data.SaveChangesAsync()) > 0;
         }
 
         public IQueryable<TViewModel> GetAll<TViewModel>()

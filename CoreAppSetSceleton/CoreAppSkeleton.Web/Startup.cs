@@ -87,7 +87,7 @@ namespace CoreAppSkeleton.Web
             {
                 // logic can go here
                 await next.Invoke();
-                logger.AddDebug(LogLevel.Error);
+                logger.AddDebug(LogLevel.Debug);
                 // and logic can go here as well
             });
 
