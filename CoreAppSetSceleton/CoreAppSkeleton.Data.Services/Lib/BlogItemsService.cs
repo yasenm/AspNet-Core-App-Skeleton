@@ -21,7 +21,7 @@ namespace CoreAppSkeleton.Data.Services.Lib
 
         public IQueryable<TViewModel> GetAll<TViewModel>()
         {
-            var result = _data.BlogItems.All()
+            var result = _data.Posts.All()
                 .ProjectTo<TViewModel>();
 
             return result;
@@ -29,7 +29,7 @@ namespace CoreAppSkeleton.Data.Services.Lib
 
         public TViewModel GetById<TViewModel>(int id)
         {
-            var model = _data.BlogItems.All().FirstOrDefault(bi => bi.Id == id);
+            var model = _data.Posts.All().FirstOrDefault(bi => bi.Id == id);
             if (model != null)
             {
                 var result = Mapper.Map<TViewModel>(model);

@@ -7,7 +7,8 @@ namespace CoreAppSkeleton.DataConsole.UnitOfWork
     public interface ICoreAppSkeletonData
     {
         IRepository<CoreAppModel> CoreAppModels { get; }
-        IDeletableEntityRepository<BlogItem> BlogItems { get; }
+        IDeletableEntityRepository<Blog> Blogs { get; }
+        IDeletableEntityRepository<Post> Posts { get; }
         Task<int> SaveChanges();
     }
 }

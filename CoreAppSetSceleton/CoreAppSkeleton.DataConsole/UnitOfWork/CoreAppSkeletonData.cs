@@ -20,19 +20,27 @@ namespace CoreAppSkeleton.DataConsole.UnitOfWork
 
         public CoreAppSkeletonDbContext Context { get; set; }
 
-        public IDeletableEntityRepository<BlogItem> BlogItems
-        {
-            get
-            {
-                return GetDeletableEntityRepository<BlogItem>();
-            }
-        }
-
         public IRepository<CoreAppModel> CoreAppModels
         {
             get
             {
                 return GetRepository<CoreAppModel>();
+            }
+        }
+
+        public IDeletableEntityRepository<Blog> Blogs
+        {
+            get
+            {
+                return GetDeletableEntityRepository<Blog>();
+            }
+        }
+
+        public IDeletableEntityRepository<Post> Posts
+        {
+            get
+            {
+                return GetDeletableEntityRepository<Post>();
             }
         }
 

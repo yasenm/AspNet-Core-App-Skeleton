@@ -9,11 +9,10 @@ namespace CoreAppSkeleton.DataConsole
     public class CoreAppSkeletonDbContext : IdentityDbContext<User>, ICoreAppSkeletonDbContext
     {
         private IConfigurationRoot _config;
-        
+
         public CoreAppSkeletonDbContext()
             : base()
         {
-
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("config.json");
@@ -28,8 +27,8 @@ namespace CoreAppSkeleton.DataConsole
         }
 
         public DbSet<CoreAppModel> CoreAppModels { get; set; }
-
-        public DbSet<BlogItem> BlogItems { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

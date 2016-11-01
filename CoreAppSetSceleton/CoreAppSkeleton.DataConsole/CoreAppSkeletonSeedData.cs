@@ -21,7 +21,8 @@ namespace CoreAppSkeleton.DataConsole
         public async Task SeedData()
         {
             await SeedUsers();
-            await SeedGeneratedBlogItemsModels();
+            await SeedGeneratedBlogModels();
+            await SeedGeneratedPostsModels();
         }
 
         private async Task SeedUsers()
@@ -38,28 +39,58 @@ namespace CoreAppSkeleton.DataConsole
                 await _userManager.CreateAsync(user, "P@ssw0rd");
             }
         }
-
-        private async Task SeedGeneratedBlogItemsModels()
+        
+        private async Task SeedGeneratedBlogModels()
         {
-            if (!_context.BlogItems.Any())
+            if (!_context.Blogs.Any())
             {
                 if (_context.Users.Any())
                 {
-                    var user = _context.Users.FirstOrDefault();
+                    var users = _context.Users.ToList();
 
                     for (int i = 0; i < NumberGenerator.RandomNumber(6, 12); i++)
                     {
-                        var newBlogItem = new BlogItem
+                        var newBlogItem = new Blog
                         {
-                            AuthorId = user.Id,
+                            AuthorId = users[NumberGenerator.RandomNumber(0, users.Count)].Id,
                             CreatedOn = DateTime.Now.AddDays(NumberGenerator.RandomNumber(1, 10)),
                             Summary = StringGenerator.RandomStringWithSpaces(40, 200),
                             Title = StringGenerator.RandomStringWithSpaces(10, 60),
                             Description = StringGenerator.RandomStringWithSpaces(200, 2000),
                         };
 
-                        _context.BlogItems.Add(newBlogItem);
+                        _context.Blogs.Add(newBlogItem);
                     }
+
+                    await _context.SaveChangesAsync();
+                }
+            }
+        }
+
+        private async Task SeedGeneratedPostsModels()
+        {
+            if (!_context.Posts.Any())
+            {
+                if (_context.Users.Any() && _context.Blogs.Any())
+                {
+                    var users = _context.Users.ToList();
+                    var blogs = _context.Blogs.ToList();
+
+                    for (int i = 0; i < NumberGenerator.RandomNumber(6, 12); i++)
+                    {
+                        var newPostItem = new Post
+                        {
+                            BlogId = blogs[NumberGenerator.RandomNumber(0, blogs.Count)].Id,
+                            AuthorId = users[NumberGenerator.RandomNumber(0, users.Count)].Id,
+                            CreatedOn = DateTime.Now.AddDays(NumberGenerator.RandomNumber(1, 10)),
+                            Summary = StringGenerator.RandomStringWithSpaces(40, 200),
+                            Title = StringGenerator.RandomStringWithSpaces(10, 60),
+                            Description = StringGenerator.RandomStringWithSpaces(200, 2000),
+                        };
+
+                        _context.Posts.Add(newPostItem);
+                    }
+
                     await _context.SaveChangesAsync();
                 }
             }

@@ -16,7 +16,7 @@ namespace CoreAppSkeleton.Data.Infrastructure.Mapping
                     .ForMember(dest => dest.Description123, opt => opt.MapFrom(src => src.Description))
                     .ReverseMap();
 
-                cfg.CreateMap<BlogItem, BlogItemLingBigViewModel>()
+                cfg.CreateMap<Post, BlogItemLingBigViewModel>()
                     .ReverseMap();
             });
         }
