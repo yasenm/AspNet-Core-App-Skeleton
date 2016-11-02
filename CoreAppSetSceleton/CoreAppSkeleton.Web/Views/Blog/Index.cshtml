@@ -1,0 +1,10 @@
+﻿@model IEnumerable<BlogSmallListViewModel>
+
+@foreach (var blog in Model)
+{
+    <div class="jumbotron">
+        <h1>@blog.Title</h1>
+        <h5>@blog.Summary</h5>
+        <p>@blog.AuthorName</p>
+    </div>
+}

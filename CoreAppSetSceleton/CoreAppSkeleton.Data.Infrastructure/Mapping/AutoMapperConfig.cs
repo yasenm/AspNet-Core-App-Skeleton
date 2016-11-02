@@ -18,6 +18,10 @@ namespace CoreAppSkeleton.Data.Infrastructure.Mapping
 
                 cfg.CreateMap<Post, PostLinkBigViewModel>()
                     .ReverseMap();
+
+                cfg.CreateMap<Blog, BlogSmallListViewModel>()
+                    .ForMember(dest => dest.AuthorName, opt => opt.MapFrom(src => src.Author.UserName))
+                    .ReverseMap();
             });
         }
     }

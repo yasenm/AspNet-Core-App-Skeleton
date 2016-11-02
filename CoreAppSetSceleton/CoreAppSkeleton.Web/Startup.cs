@@ -45,6 +45,7 @@ namespace CoreAppSkeleton.Web
             services.AddScoped<ICoreAppSkeletonData, CoreAppSkeletonData>();
             services.AddScoped<ICoreAppModelService, CoreAppModelService>();
             services.AddScoped<IPostService, PostService>();
+            services.AddScoped<IBlogService, BlogService>();
 
             services.AddTransient<CoreAppSkeletonSeedData>();
 
@@ -97,6 +98,11 @@ namespace CoreAppSkeleton.Web
 
             app.UseMvc(config =>
             {
+                config.MapRoute(
+                    name: "Blog",
+                    template: "Blog/{*author}",
+                    defaults: new { controller = "Blog", action = "Index" });
+
                 config.MapRoute(
                     name: "Default",
                     template: "{controller}/{action}/{id?}",
