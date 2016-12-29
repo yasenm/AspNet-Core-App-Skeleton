@@ -5,22 +5,18 @@ namespace CoreAppSkeleton.Data.Models
 {
     public class User : IdentityUser
     {
-        private ICollection<Blog> _blogs;
-        private ICollection<Post> _posts;
+        private ICollection<BlogPost> _posts;
 
         public User()
         {
-            Blogs = new HashSet<Blog>();
-            Posts = new HashSet<Post>();
+            Posts = new HashSet<BlogPost>();
         }
 
-        public virtual ICollection<Blog> Blogs
-        {
-            get { return _blogs; }
-            set { _blogs = value; }
-        }
+        public string ShortBio { get; set; }
 
-        public virtual ICollection<Post> Posts
+        public string Bio { get; set; }
+
+        public virtual ICollection<BlogPost> Posts
         {
             get { return _posts; }
             set { _posts = value; }

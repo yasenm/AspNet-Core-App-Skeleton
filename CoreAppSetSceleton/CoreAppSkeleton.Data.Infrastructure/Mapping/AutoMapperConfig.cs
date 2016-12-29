@@ -16,12 +16,17 @@ namespace CoreAppSkeleton.Data.Infrastructure.Mapping
                     .ForMember(dest => dest.Description123, opt => opt.MapFrom(src => src.Description))
                     .ReverseMap();
 
-                cfg.CreateMap<Post, PostLinkBigViewModel>()
-                    .ReverseMap();
-
-                cfg.CreateMap<Blog, BlogSmallListViewModel>()
+                cfg.CreateMap<BlogPost, BlogPostDetailsViewModel>()
                     .ForMember(dest => dest.AuthorName, opt => opt.MapFrom(src => src.Author.UserName))
                     .ReverseMap();
+
+                cfg.CreateMap<BlogPost, BlogSmallListViewModel>()
+                    .ForMember(dest => dest.AuthorName, opt => opt.MapFrom(src => src.Author.UserName))
+                    .ReverseMap();
+
+
+                cfg.CreateMap<User, UserListViewModel>().ReverseMap();
+                cfg.CreateMap<User, UserShortInfoViewModel>().ReverseMap();
             });
         }
     }

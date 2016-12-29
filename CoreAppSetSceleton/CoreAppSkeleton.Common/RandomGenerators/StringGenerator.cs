@@ -5,7 +5,6 @@ namespace CoreAppSkeleton.Common.RandomGenerators
 {
     public static class StringGenerator
     {
-
         private static Random random = new Random();
         private static string Alphabet = "ABCDEFGHIJKLMNOPQRSTUWXYZabcdefghijklmnopqrstuwxyz";
         private static string AlphabetWithSpaces = "   ABCDEFGHIJKLMNOPQRSTUWXYZ     abcdefghijklmnopqrstuwxyz     ";

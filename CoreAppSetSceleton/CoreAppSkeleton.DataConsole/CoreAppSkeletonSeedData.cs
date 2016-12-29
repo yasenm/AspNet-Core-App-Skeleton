@@ -20,67 +20,57 @@ namespace CoreAppSkeleton.DataConsole
 
         public async Task SeedData()
         {
-            await SeedUsers();
-            await SeedGeneratedBlogModels();
-            await SeedGeneratedPostsModels();
+            //_context.Database.EnsureDeleted();
+            if (_context.Database.EnsureCreated())
+            {
+                await SeedUsers();
+                await SeedGeneratedPostsModels();
+            }
         }
 
         private async Task SeedUsers()
         {
-            if (await _userManager.FindByEmailAsync("admin@core.com") == null)
+            if (!_userManager.Users.Any())
             {
-                var user = new User
+                if (await _userManager.FindByEmailAsync("admin@core.com") == null)
                 {
-                    UserName = "admincore",
-                    Email = "admin@core.com",
-
-                };
-
-                await _userManager.CreateAsync(user, "P@ssw0rd");
-            }
-        }
-
-        private async Task SeedGeneratedBlogModels()
-        {
-            if (!_context.Blogs.Any())
-            {
-                if (_context.Users.Any())
-                {
-                    var users = _context.Users.ToList();
-
-                    for (int i = 0; i < NumberGenerator.RandomNumber(6, 12); i++)
+                    var user = new User
                     {
-                        var newBlogItem = new Blog
-                        {
-                            AuthorId = users[NumberGenerator.RandomNumber(0, users.Count - 1)].Id,
-                            CreatedOn = DateTime.Now.AddDays(NumberGenerator.RandomNumber(1, 10)),
-                            Summary = StringGenerator.RandomStringWithSpaces(40, 200),
-                            Title = StringGenerator.RandomStringWithSpaces(10, 60),
-                            Description = StringGenerator.RandomStringWithSpaces(200, 2000),
-                        };
+                        UserName = "admincore",
+                        Email = "admin@core.com",
 
-                        _context.Blogs.Add(newBlogItem);
-                    }
+                    };
 
-                    await _context.SaveChangesAsync();
+                    await _userManager.CreateAsync(user, "P@ssw0rd");
+                }
+
+                for (int i = 0; i < NumberGenerator.RandomNumber(6, 12); i++)
+                {
+                    var user = new User
+                    {
+                        UserName = StringGenerator.RandomStringWithSpaces(4, 20),
+                        Email = StringGenerator.RandomStringWithoutSpaces(2, 7) + "@core.com",
+                        ShortBio = StringGenerator.RandomStringWithSpaces(30, 200),
+                        Bio = StringGenerator.RandomStringWithSpaces(100, 2000)
+                    };
+
+                    await _userManager.CreateAsync(user, "P@ssw0rd");
                 }
             }
         }
 
         private async Task SeedGeneratedPostsModels()
         {
-            if (!_context.Posts.Any())
+            if (!_context.BlogPosts.Any())
             {
-                if (_context.Users.Any() && _context.Blogs.Any())
+                if (_context.Users.Any())
                 {
                     var users = _context.Users.ToList();
-                    var blogs = _context.Blogs.ToList();
 
-                    for (int i = 0; i < NumberGenerator.RandomNumber(6, 12); i++)
+                    for (int i = 0; i < NumberGenerator.RandomNumber(20, 40); i++)
                     {
-                        var newPostItem = new Post
+                        var newPostItem = new BlogPost
                         {
-                            BlogId = blogs[NumberGenerator.RandomNumber(0, blogs.Count - 1)].Id,
                             AuthorId = users[NumberGenerator.RandomNumber(0, users.Count - 1)].Id,
                             CreatedOn = DateTime.Now.AddDays(NumberGenerator.RandomNumber(1, 10)),
                             Summary = StringGenerator.RandomStringWithSpaces(40, 200),
@@ -88,7 +78,7 @@ namespace CoreAppSkeleton.DataConsole
                             Description = StringGenerator.RandomStringWithSpaces(200, 2000),
                         };
 
-                        _context.Posts.Add(newPostItem);
+                        _context.BlogPosts.Add(newPostItem);
                     }
 
                     await _context.SaveChangesAsync();

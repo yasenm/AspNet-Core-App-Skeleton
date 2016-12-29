@@ -1,0 +1,14 @@
+﻿@model IEnumerable<BlogSmallListViewModel>
+
+@foreach (var blogPost in Model)
+{
+    <div class="jumbotron">
+        <h1>
+            <a href="@Url.Action("Details", "BlogPost", new { id = blogPost.Id })">
+                @blogPost.Title
+            </a>
+        </h1>
+        <p>@blogPost.Summary</p>
+        <p>By: @blogPost.AuthorName</p>
+    </div>
+}

@@ -44,8 +44,8 @@ namespace CoreAppSkeleton.Web
             // Custom services registretion
             services.AddScoped<ICoreAppSkeletonData, CoreAppSkeletonData>();
             services.AddScoped<ICoreAppModelService, CoreAppModelService>();
-            services.AddScoped<IPostService, PostService>();
-            services.AddScoped<IBlogService, BlogService>();
+            services.AddScoped<IBlogPostService, BlogPostService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddTransient<CoreAppSkeletonSeedData>();
 
@@ -77,7 +77,7 @@ namespace CoreAppSkeleton.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                logger.AddDebug(LogLevel.Information);
+                logger.AddConsole(LogLevel.Error);
             }
             else
             {
@@ -99,9 +99,14 @@ namespace CoreAppSkeleton.Web
             app.UseMvc(config =>
             {
                 config.MapRoute(
-                    name: "Blog",
-                    template: "Blog/{*author}",
-                    defaults: new { controller = "Blog", action = "Index" });
+                    name: "BlogPosts",
+                    template: "blog/{author}",
+                    defaults: new { controller = "BlogPost", action = "Blog" });
+
+                config.MapRoute(
+                    name: "BlogPostDetails",
+                    template: "blog/details/{id}",
+                    defaults: new { controller = "BlogPost", action = "Details" });
 
                 config.MapRoute(
                     name: "Default",

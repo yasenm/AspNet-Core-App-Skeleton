@@ -1,0 +1,4 @@
+﻿@model string
+
+@await Component.InvokeAsync("UserBlogInfo", new { username = Model})
+@await Component.InvokeAsync("BlogPostList", new { username = Model})

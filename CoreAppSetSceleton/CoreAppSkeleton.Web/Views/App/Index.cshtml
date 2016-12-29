@@ -1,11 +1,1 @@
-﻿@model IEnumerable<CoreAppViewModel>
-
-@foreach (var coreappmodel in Model)
-{
-    <div class="jumbotron">
-        <h1>
-            @coreappmodel.Title
-        </h1>
-        <p>@coreappmodel.Description123</p>
-    </div>
-}
+﻿@await Component.InvokeAsync("UserList", new { })

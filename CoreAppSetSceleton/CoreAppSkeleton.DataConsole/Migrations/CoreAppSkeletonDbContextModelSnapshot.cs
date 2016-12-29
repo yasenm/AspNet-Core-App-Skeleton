@@ -16,12 +16,14 @@ namespace CoreAppSkeleton.DataConsole.Migrations
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("CoreAppSkeleton.Data.Models.Blog", b =>
+            modelBuilder.Entity("CoreAppSkeleton.Data.Models.BlogPost", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("AuthorId");
+
+                    b.Property<string>("Content");
 
                     b.Property<DateTime>("CreatedOn");
 
@@ -41,7 +43,7 @@ namespace CoreAppSkeleton.DataConsole.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("Blogs");
+                    b.ToTable("BlogPosts");
                 });
 
             modelBuilder.Entity("CoreAppSkeleton.Data.Models.CoreAppModel", b =>
@@ -56,38 +58,6 @@ namespace CoreAppSkeleton.DataConsole.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CoreAppModels");
-                });
-
-            modelBuilder.Entity("CoreAppSkeleton.Data.Models.Post", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AuthorId");
-
-                    b.Property<int>("BlogId");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<DateTime?>("DeletedOn");
-
-                    b.Property<string>("Description");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<DateTime?>("ModifiedOn");
-
-                    b.Property<string>("Summary");
-
-                    b.Property<string>("Title");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("BlogId");
-
-                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("CoreAppSkeleton.Data.Models.User", b =>
@@ -246,23 +216,11 @@ namespace CoreAppSkeleton.DataConsole.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("CoreAppSkeleton.Data.Models.Blog", b =>
-                {
-                    b.HasOne("CoreAppSkeleton.Data.Models.User", "Author")
-                        .WithMany("Blogs")
-                        .HasForeignKey("AuthorId");
-                });
-
-            modelBuilder.Entity("CoreAppSkeleton.Data.Models.Post", b =>
+            modelBuilder.Entity("CoreAppSkeleton.Data.Models.BlogPost", b =>
                 {
                     b.HasOne("CoreAppSkeleton.Data.Models.User", "Author")
                         .WithMany("Posts")
                         .HasForeignKey("AuthorId");
-
-                    b.HasOne("CoreAppSkeleton.Data.Models.Blog", "Blog")
-                        .WithMany("Posts")
-                        .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

@@ -2,11 +2,12 @@
 
 namespace CoreAppSkeleton.Data.ViewModels
 {
-    public class PostLinkBigViewModel
+    public class BlogPostDetailsViewModel
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Summary { get; set; }
+        public string Description { get; set; }
         public DateTime CreatedOn { get; set; }
+        public string AuthorName { get; set; }
     }
 }

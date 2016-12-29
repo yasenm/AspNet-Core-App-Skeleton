@@ -8,14 +8,44 @@ using CoreAppSkeleton.DataConsole;
 namespace CoreAppSkeleton.DataConsole.Migrations
 {
     [DbContext(typeof(CoreAppSkeletonDbContext))]
-    [Migration("20160907120015_RemovingAliasField")]
-    partial class RemovingAliasField
+    [Migration("20161228134451_InitialDB")]
+    partial class InitialDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("CoreAppSkeleton.Data.Models.BlogPost", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AuthorId");
+
+                    b.Property<string>("Content");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<DateTime?>("DeletedOn");
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModifiedOn");
+
+                    b.Property<string>("Summary");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.ToTable("BlogPosts");
+                });
 
             modelBuilder.Entity("CoreAppSkeleton.Data.Models.CoreAppModel", b =>
                 {
@@ -185,6 +215,13 @@ namespace CoreAppSkeleton.DataConsole.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("CoreAppSkeleton.Data.Models.BlogPost", b =>
+                {
+                    b.HasOne("CoreAppSkeleton.Data.Models.User", "Author")
+                        .WithMany("Posts")
+                        .HasForeignKey("AuthorId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

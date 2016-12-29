@@ -1,0 +1,13 @@
+﻿@model ICollection<UserListViewModel>
+
+@foreach (var user in Model)
+{
+    <div class="jumbotron">
+        <h1>
+            <a href="@Url.Action("Blog", "BlogPost", new { author = user.UserName })">
+                @user.UserName
+            </a>
+        </h1>
+    </div>
+    <br />
+}

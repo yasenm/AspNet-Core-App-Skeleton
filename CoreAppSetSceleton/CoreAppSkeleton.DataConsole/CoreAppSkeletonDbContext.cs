@@ -27,8 +27,7 @@ namespace CoreAppSkeleton.DataConsole
         }
 
         public DbSet<CoreAppModel> CoreAppModels { get; set; }
-        public DbSet<Post> Posts { get; set; }
-        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<BlogPost> BlogPosts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

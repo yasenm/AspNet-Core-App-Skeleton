@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 
 namespace CoreAppSkeleton.Data.Services.Lib
 {
-    public class PostService : IPostService
+    public class BlogPostService : IBlogPostService
     {
         private ICoreAppSkeletonData _data;
 
-        public PostService(ICoreAppSkeletonData data)
+        public BlogPostService(ICoreAppSkeletonData data)
         {
             _data = data;
         }
 
         public IQueryable<TViewModel> GetAll<TViewModel>()
         {
-            var result = _data.Posts.All()
+            var result = _data.BlogPosts.All()
                 .ProjectTo<TViewModel>();
 
             return result;
@@ -29,14 +29,26 @@ namespace CoreAppSkeleton.Data.Services.Lib
 
         public TViewModel GetById<TViewModel>(int id)
         {
-            var model = _data.Posts.All().FirstOrDefault(bi => bi.Id == id);
+            var model = _data.BlogPosts.All()
+                .Where(bi => bi.Id == id)
+                .ProjectTo<TViewModel>()
+                .FirstOrDefault();
             if (model != null)
             {
-                var result = Mapper.Map<TViewModel>(model);
-                return result;
+                return model;
             }
 
             return default(TViewModel);
+        }
+
+        public ICollection<TViewModel> GetUserBlogPosts<TViewModel>(string username)
+        {
+            var blogPosts = _data.BlogPosts.All()
+                .Where(bp => bp.Author.UserName == username)
+                .ProjectTo<TViewModel>()
+                .ToList();
+
+            return blogPosts;
         }
     }
 }

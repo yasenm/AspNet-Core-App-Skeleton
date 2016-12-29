@@ -20,6 +20,14 @@ namespace CoreAppSkeleton.DataConsole.UnitOfWork
 
         public CoreAppSkeletonDbContext Context { get; set; }
 
+        public IRepository<User> Users
+        {
+            get
+            {
+                return GetRepository<User>();
+            }
+        }
+
         public IRepository<CoreAppModel> CoreAppModels
         {
             get
@@ -27,20 +35,12 @@ namespace CoreAppSkeleton.DataConsole.UnitOfWork
                 return GetRepository<CoreAppModel>();
             }
         }
-
-        public IDeletableEntityRepository<Blog> Blogs
+        
+        public IDeletableEntityRepository<BlogPost> BlogPosts
         {
             get
             {
-                return GetDeletableEntityRepository<Blog>();
-            }
-        }
-
-        public IDeletableEntityRepository<Post> Posts
-        {
-            get
-            {
-                return GetDeletableEntityRepository<Post>();
+                return GetDeletableEntityRepository<BlogPost>();
             }
         }
 
